@@ -1,1 +1,1 @@
-# medical-research-assistant
+# medical-research-analyzer
