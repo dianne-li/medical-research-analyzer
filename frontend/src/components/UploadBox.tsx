@@ -2,23 +2,44 @@ function UploadBox() {
   return (
     <div
       style={{
-        border: "2px dashed #bbb",
-        borderRadius: "12px",
-        padding: "3rem",
+        border: "2px dashed #c8c8c8",
+        borderRadius: "16px",
+        padding: "3.5rem 2rem",
         textAlign: "center",
-        marginTop: "2rem",
+        marginTop: "2.5rem",
+        backgroundColor: "white",
       }}
     >
-      <h3>Upload a research paper</h3>
+      <div
+        style={{
+          fontSize: "2rem",
+          marginBottom: "1rem",
+        }}
+      >
+        📄
+      </div>
 
-      <p style={{ color: "#666" }}>
-        Drag and drop a PDF here or choose a file.
+      <h2 style={{ marginBottom: "0.5rem" }}>
+        Upload a research paper
+      </h2>
+
+      <p
+        style={{
+          color: "#666",
+          marginBottom: "1.5rem",
+        }}
+      >
+        Drag and drop a PDF here or choose a file from your computer.
       </p>
 
       <button
         style={{
+          backgroundColor: "#1f2937",
+          color: "white",
+          border: "none",
+          borderRadius: "8px",
           padding: "12px 20px",
-          marginTop: "1rem",
+          fontSize: "15px",
           cursor: "pointer",
         }}
       >
@@ -27,9 +48,9 @@ function UploadBox() {
 
       <p
         style={{
-          color: "#888",
-          fontSize: "14px",
           marginTop: "1rem",
+          color: "#999",
+          fontSize: "13px",
         }}
       >
         PDF files only

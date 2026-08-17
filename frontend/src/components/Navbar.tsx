@@ -2,16 +2,36 @@ function Navbar() {
   return (
     <nav
       style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "1.5rem 2rem",
-        borderBottom: "1px solid #ddd",
+        backgroundColor: "white",
+        borderBottom: "1px solid #e5e5e5",
       }}
     >
-      <strong>Medical Research Analyzer</strong>
+      <div
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+          padding: "1.25rem 2rem",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <strong style={{ fontSize: "18px" }}>
+          Medical Research Analyzer
+        </strong>
 
-      <span style={{ color: "#666" }}>Saved Papers</span>
+        <button
+          style={{
+            border: "none",
+            background: "none",
+            color: "#666",
+            cursor: "pointer",
+            fontSize: "14px",
+          }}
+        >
+          Saved Papers
+        </button>
+      </div>
     </nav>
   );
 }
