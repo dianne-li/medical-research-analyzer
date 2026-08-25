@@ -2,6 +2,7 @@ export interface UploadResponse {
   filename: string;
   content_type: string;
   message: string;
+  preview: string;
 }
 
 export async function uploadPDF(

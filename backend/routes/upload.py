@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, HTTPException
 
-from services.pdf_service import validate_pdf
+from services.pdf_service import validate_pdf, extract_text
 
 router = APIRouter()
 
@@ -15,8 +15,13 @@ async def upload_pdf(file: UploadFile):
             detail=result["message"],
         )
 
+    pdf_bytes = await file.read()
+
+    text = extract_text(pdf_bytes)
+
     return {
-        "message": "PDF received successfully",
+        "message": "PDF received and extracted successfully",
         "filename": result["filename"],
         "content_type": result["content_type"],
+        "preview": text[:500],
     }

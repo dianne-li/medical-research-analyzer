@@ -135,6 +135,20 @@ function UploadBox() {
           <p>
             <strong>Message:</strong> {uploadResult.message}
           </p>
+
+          <p>
+            <strong>Text Preview:</strong>
+          </p>
+
+          <p
+            style={{
+              whiteSpace: "pre-wrap",
+              color: "#555",
+              lineHeight: 1.5,
+            }}
+          >
+            {uploadResult.preview}
+          </p>
         </div>
       )}
     </div>
