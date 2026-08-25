@@ -1,5 +1,6 @@
 import fitz
 import io
+import re
 
 from fastapi import UploadFile
 
@@ -30,5 +31,21 @@ def extract_text(pdf_bytes: bytes) -> str:
         text += page.get_text()
 
     document.close()
+
+    return text
+
+def clean_text(text: str) -> str:
+    """
+    Normalize extracted PDF text before sending it to the LLM.
+    """
+
+    # Remove leading/trailing whitespace
+    text = text.strip()
+
+    # Replace multiple spaces or tabs with one space
+    text = re.sub(r"[ \t]+", " ", text)
+
+    # Replace three or more newlines with two
+    text = re.sub(r"\n{3,}", "\n\n", text)
 
     return text
