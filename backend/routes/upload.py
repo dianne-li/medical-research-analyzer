@@ -2,6 +2,7 @@ from fastapi import APIRouter, UploadFile, HTTPException
 
 from services.pdf_service import validate_pdf, extract_text, clean_text
 from services.llm_service import generate_summary
+from services.citation_service import verify_quotes
 
 router = APIRouter()
 
@@ -22,6 +23,11 @@ async def upload_pdf(file: UploadFile):
     text = clean_text(text)
 
     summary = generate_summary(text)
+
+    summary = verify_quotes(
+        summary,
+        text,
+    )
 
     return {
         "message": "Paper analyzed successfully",

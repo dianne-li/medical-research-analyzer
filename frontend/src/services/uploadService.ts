@@ -1,25 +1,30 @@
+export interface EvidenceField {
+  content: string;
+  quotes: string[];
+}
+
 export interface PaperSummary {
   title: string;
   authors: string;
   journal: string;
   publication_year: string;
 
-  study_design: string;
-  population: string;
-  sample_size: string;
+  study_design: EvidenceField;
+  population: EvidenceField;
+  sample_size: EvidenceField;
 
-  intervention: string;
-  primary_outcome: string;
-  secondary_outcomes: string;
+  intervention: EvidenceField;
+  primary_outcome: EvidenceField;
+  secondary_outcomes: EvidenceField;
 
-  main_findings: string;
-  limitations: string;
-  clinical_significance: string;
+  main_findings: EvidenceField;
+  limitations: EvidenceField;
+  clinical_significance: EvidenceField;
 
-  key_statistics: string;
+  key_statistics: EvidenceField;
 
-  strengths: string;
-  weaknesses: string;
+  strengths: EvidenceField;
+  weaknesses: EvidenceField;
 
   summary_confidence: string;
 }

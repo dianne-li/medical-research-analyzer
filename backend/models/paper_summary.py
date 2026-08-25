@@ -1,27 +1,32 @@
 from pydantic import BaseModel
 
 
+class EvidenceField(BaseModel):
+    content: str
+    quotes: list[str]
+
+
 class PaperSummary(BaseModel):
     title: str
     authors: str
     journal: str
     publication_year: str
 
-    study_design: str
-    population: str
-    sample_size: str
+    study_design: EvidenceField
+    population: EvidenceField
+    sample_size: EvidenceField
 
-    intervention: str
-    primary_outcome: str
-    secondary_outcomes: str
+    intervention: EvidenceField
+    primary_outcome: EvidenceField
+    secondary_outcomes: EvidenceField
 
-    main_findings: str
-    limitations: str
-    clinical_significance: str
+    main_findings: EvidenceField
+    limitations: EvidenceField
+    clinical_significance: EvidenceField
 
-    key_statistics: str
+    key_statistics: EvidenceField
 
-    strengths: str
-    weaknesses: str
+    strengths: EvidenceField
+    weaknesses: EvidenceField
 
     summary_confidence: str

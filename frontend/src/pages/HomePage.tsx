@@ -1,8 +1,15 @@
+import { useState } from "react";
+
 import Navbar from "../components/Navbar";
 import UploadBox from "../components/UploadBox";
-import RecentPapers from "../components/RecentPapers";
+import AnalysisSection from "../components/AnalysisSection";
+
+import type { UploadResponse } from "../services/uploadService";
 
 function HomePage() {
+  const [analysisResult, setAnalysisResult] =
+    useState<UploadResponse | null>(null);
+
   return (
     <div
       style={{
@@ -15,7 +22,7 @@ function HomePage() {
 
       <main
         style={{
-          maxWidth: "800px",
+          maxWidth: "1100px",
           margin: "0 auto",
           padding: "5rem 2rem",
         }}
@@ -58,21 +65,23 @@ function HomePage() {
           </p>
         </section>
 
-        <UploadBox />
+        <UploadBox onAnalysisComplete={setAnalysisResult} />
 
-        <RecentPapers />
-
-        <p
-          style={{
-            textAlign: "center",
-            marginTop: "4rem",
-            color: "#999",
-            fontSize: "12px",
-          }}
-        >
-          Research and educational use only. This tool does not provide medical
-          advice.
-        </p>
+        {analysisResult && (
+          <div
+            style={{
+              marginTop: "2rem",
+              backgroundColor: "#eeeeef",
+              borderRadius: "18px",
+              padding: "2rem",
+            }}
+          >
+            <AnalysisSection
+              summary={analysisResult.summary}
+              filename={analysisResult.filename}
+            />
+          </div>
+        )}
       </main>
     </div>
   );
