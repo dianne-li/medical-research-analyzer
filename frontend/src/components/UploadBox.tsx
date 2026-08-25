@@ -66,26 +66,28 @@ function UploadBox() {
           marginBottom: "1.5rem",
         }}
       >
-        Drag and drop a PDF here or choose a file from your computer.
+        Choose a PDF from your computer to generate a structured research
+        summary.
       </p>
 
       <label
         style={{
-          backgroundColor: "#1f2937",
+          backgroundColor: loading ? "#6b7280" : "#1f2937",
           color: "white",
           borderRadius: "8px",
           padding: "12px 20px",
-          cursor: "pointer",
+          cursor: loading ? "not-allowed" : "pointer",
           display: "inline-block",
         }}
       >
-        Choose PDF
+        {loading ? "Analyzing..." : "Choose PDF"}
 
         <input
           type="file"
           accept=".pdf"
           style={{ display: "none" }}
           onChange={handleFileSelect}
+          disabled={loading}
         />
       </label>
 
@@ -100,16 +102,21 @@ function UploadBox() {
       </p>
 
       {loading && (
-        <p style={{ marginTop: "1rem" }}>
-          Uploading...
+        <p
+          style={{
+            marginTop: "1.5rem",
+            color: "#555",
+          }}
+        >
+          Analyzing paper. This may take a few moments.
         </p>
       )}
 
       {error && (
         <p
           style={{
-            marginTop: "1rem",
-            color: "red",
+            marginTop: "1.5rem",
+            color: "#b91c1c",
           }}
         >
           {error}
@@ -119,35 +126,105 @@ function UploadBox() {
       {uploadResult && (
         <div
           style={{
-            marginTop: "1.5rem",
+            marginTop: "2rem",
             textAlign: "left",
             backgroundColor: "#f4f4f4",
-            padding: "1rem",
-            borderRadius: "8px",
+            padding: "1.5rem",
+            borderRadius: "12px",
           }}
         >
-          <strong>Upload Successful</strong>
-
-          <p>
-            <strong>Filename:</strong> {uploadResult.filename}
-          </p>
-
-          <p>
-            <strong>Message:</strong> {uploadResult.message}
-          </p>
-
-          <p>
-            <strong>Text Preview:</strong>
-          </p>
-
-          <p
+          <h3
             style={{
-              whiteSpace: "pre-wrap",
-              color: "#555",
-              lineHeight: 1.5,
+              marginTop: 0,
+              marginBottom: "1rem",
             }}
           >
-            {uploadResult.preview}
+            Analysis Complete
+          </h3>
+
+          <p>
+            <strong>Title:</strong>{" "}
+            {uploadResult.summary.title}
+          </p>
+
+          <p>
+            <strong>Authors:</strong>{" "}
+            {uploadResult.summary.authors}
+          </p>
+
+          <p>
+            <strong>Journal:</strong>{" "}
+            {uploadResult.summary.journal}
+          </p>
+
+          <p>
+            <strong>Publication Year:</strong>{" "}
+            {uploadResult.summary.publication_year}
+          </p>
+
+          <p>
+            <strong>Study Design:</strong>{" "}
+            {uploadResult.summary.study_design}
+          </p>
+
+          <p>
+            <strong>Population:</strong>{" "}
+            {uploadResult.summary.population}
+          </p>
+
+          <p>
+            <strong>Sample Size:</strong>{" "}
+            {uploadResult.summary.sample_size}
+          </p>
+
+          <p>
+            <strong>Intervention:</strong>{" "}
+            {uploadResult.summary.intervention}
+          </p>
+
+          <p>
+            <strong>Primary Outcome:</strong>{" "}
+            {uploadResult.summary.primary_outcome}
+          </p>
+
+          <p>
+            <strong>Secondary Outcomes:</strong>{" "}
+            {uploadResult.summary.secondary_outcomes}
+          </p>
+
+          <p>
+            <strong>Main Findings:</strong>{" "}
+            {uploadResult.summary.main_findings}
+          </p>
+
+          <p>
+            <strong>Limitations:</strong>{" "}
+            {uploadResult.summary.limitations}
+          </p>
+
+          <p>
+            <strong>Clinical Significance:</strong>{" "}
+            {uploadResult.summary.clinical_significance}
+          </p>
+
+          <p>
+            <strong>Key Statistics:</strong>{" "}
+            {uploadResult.summary.key_statistics}
+          </p>
+
+          <p>
+            <strong>Strengths:</strong>{" "}
+            {uploadResult.summary.strengths}
+          </p>
+
+          <p>
+            <strong>Weaknesses:</strong>{" "}
+            {uploadResult.summary.weaknesses}
+          </p>
+
+          <p>
+            <strong>Summary Confidence:</strong>{" "}
+            {uploadResult.summary.summary_confidence}
           </p>
         </div>
       )}

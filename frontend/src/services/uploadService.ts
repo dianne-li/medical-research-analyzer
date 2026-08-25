@@ -1,8 +1,33 @@
+export interface PaperSummary {
+  title: string;
+  authors: string;
+  journal: string;
+  publication_year: string;
+
+  study_design: string;
+  population: string;
+  sample_size: string;
+
+  intervention: string;
+  primary_outcome: string;
+  secondary_outcomes: string;
+
+  main_findings: string;
+  limitations: string;
+  clinical_significance: string;
+
+  key_statistics: string;
+
+  strengths: string;
+  weaknesses: string;
+
+  summary_confidence: string;
+}
+
 export interface UploadResponse {
   filename: string;
-  content_type: string;
   message: string;
-  preview: string;
+  summary: PaperSummary;
 }
 
 export async function uploadPDF(

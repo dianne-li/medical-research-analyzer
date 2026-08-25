@@ -1,6 +1,7 @@
 from fastapi import APIRouter, UploadFile, HTTPException
 
 from services.pdf_service import validate_pdf, extract_text, clean_text
+from services.llm_service import generate_summary
 
 router = APIRouter()
 
@@ -18,11 +19,12 @@ async def upload_pdf(file: UploadFile):
     pdf_bytes = await file.read()
 
     text = extract_text(pdf_bytes)
-    cleaned_text = clean_text(text)
+    text = clean_text(text)
+
+    summary = generate_summary(text)
 
     return {
-        "message": "PDF received and extracted successfully",
+        "message": "Paper analyzed successfully",
         "filename": result["filename"],
-        "content_type": result["content_type"],
-        "preview": text[:500],
+        "summary": summary,
     }
