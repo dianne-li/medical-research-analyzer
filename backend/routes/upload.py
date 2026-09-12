@@ -1,7 +1,10 @@
 from fastapi import APIRouter, UploadFile, HTTPException
 
 from services.pdf_service import validate_pdf, extract_text, clean_text
-from services.llm_service import generate_summary
+from services.llm_service import (
+    generate_summary,
+    is_biomedical_research_paper,
+)
 from services.citation_service import verify_quotes
 
 router = APIRouter()
@@ -21,6 +24,15 @@ async def upload_pdf(file: UploadFile):
 
     text = extract_text(pdf_bytes)
     text = clean_text(text)
+
+    if not is_biomedical_research_paper(text):
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "This PDF does not appear to be a biomedical research paper. "
+                "Please upload a research article."
+            ),
+        )
 
     summary = generate_summary(text)
 

@@ -65,7 +65,10 @@ function HomePage() {
           </p>
         </section>
 
-        <UploadBox onAnalysisComplete={setAnalysisResult} />
+        <UploadBox
+          onAnalysisComplete={setAnalysisResult}
+          onAnalysisClear={() => setAnalysisResult(null)}
+        /> 
 
         {analysisResult && (
           <div

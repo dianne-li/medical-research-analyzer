@@ -4,9 +4,13 @@ import type { UploadResponse } from "../services/uploadService";
 
 interface UploadBoxProps {
   onAnalysisComplete: (result: UploadResponse) => void;
+  onAnalysisClear: () => void;
 }
 
-function UploadBox({ onAnalysisComplete }: UploadBoxProps) {
+function UploadBox({
+  onAnalysisComplete,
+  onAnalysisClear,
+}: UploadBoxProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -18,6 +22,8 @@ function UploadBox({ onAnalysisComplete }: UploadBoxProps) {
     if (!file) {
       return;
     }
+
+    onAnalysisClear();
 
     setError("");
     setLoading(true);
